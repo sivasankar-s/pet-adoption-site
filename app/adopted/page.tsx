@@ -1,18 +1,13 @@
-import Image from "next/image";
-import Hero from "./components/Hero";
 import Link from "next/link";
+import React from "react";
 import { FaPaw } from "react-icons/fa";
-import GridCard from "./components/GridCard";
-import { animals } from "@/sampledata";
-// import { PrismaClient } from "@prisma/client";
-import prisma from "./prsima";
+import GridCard from "../components/GridCard";
+import prisma from "@/app/prsima";
 
-export default async function Home() {
-  // const prisma = new PrismaClient();
-
-  const allPetDetails = await prisma.petDetails.findMany({
+const page = async () => {
+  const adoptedPetDetails = await prisma.petDetails.findMany({
     where: {
-      availableStatus: true,
+      availableStatus: false,
     },
     select: {
       type: true,
@@ -26,7 +21,6 @@ export default async function Home() {
 
   return (
     <main>
-      {/* <Hero /> */}
       <div className="flex justify-center space-x-32 mt-16 mb-20">
         <Link
           href="/"
@@ -43,7 +37,7 @@ export default async function Home() {
         </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-7 ">
-        {allPetDetails.map((pet, i) => (
+        {adoptedPetDetails.map((pet, i) => (
           <GridCard
             type={pet.type}
             image={pet.imageUrl}
@@ -58,4 +52,6 @@ export default async function Home() {
       </div>
     </main>
   );
-}
+};
+
+export default page;
