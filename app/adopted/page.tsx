@@ -3,6 +3,7 @@ import React from "react";
 import { FaPaw } from "react-icons/fa";
 import GridCard from "../components/GridCard";
 import prisma from "@/app/prsima";
+import Hero from "../components/Hero";
 
 const page = async () => {
   const adoptedPetDetails = await prisma.petDetails.findMany({
@@ -21,6 +22,7 @@ const page = async () => {
 
   return (
     <main>
+      <Hero />
       <div className="flex justify-center space-x-32 mt-16 mb-20">
         <Link
           href="/"
@@ -42,7 +44,7 @@ const page = async () => {
             type={pet.type}
             image={pet.imageUrl}
             breed={pet.breed}
-            dob={pet.dateOfBirth.toLocaleDateString()}
+            dob={pet.dateOfBirth.toLocaleDateString("en-GB")}
             gender={pet.gender}
             name={pet.name}
             key={i}

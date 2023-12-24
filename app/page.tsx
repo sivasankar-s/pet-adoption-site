@@ -27,6 +27,7 @@ export default async function Home() {
   return (
     <main>
       {/* <Hero /> */}
+      <Hero />
       <div className="flex justify-center space-x-32 mt-16 mb-20">
         <Link
           href="/"
