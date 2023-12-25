@@ -26,8 +26,9 @@ export async function POST(req : NextRequest) {
             dateOfBirth: body.dob,
             gender: body.gender,
             type: body.animalType,
-            imageUrl: 'https://images.unsplash.com/photo-1682686581556-a3f0ee0ed556',
+            imageUrl: body.url,
             owner: body.email,
+            description: body.description,
             
         }
       })

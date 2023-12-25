@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/app/prsima";
 import { getServerSession } from "next-auth";
-import { AuthOptions } from "../auth/[...nextauth]/route";
+import { AuthOptions } from "../auth/[...nextauth]/AuthOptions";
 
 export async function PUT(req : NextRequest) {
     const body = await req.json();
@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
     const user = await prisma.user.findUnique({where: {email: (session?.user?.email)!}, select: {
         phoneNumber: true
     }})
-    console.log(user)
+    // console.log(user)
 
     return NextResponse.json(user, {status: 200});
 }

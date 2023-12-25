@@ -50,3 +50,11 @@ body {
 .shake:hover .shake-element{
   animation: shake 0.5s ease-in-out;
 }
+
+input:checked {
+  background-color: #22c55e; /* bg-green-500 */
+}
+
+input:checked ~ span:last-child {
+  --tw-translate-x: 1.75rem; /* translate-x-7 */
+}

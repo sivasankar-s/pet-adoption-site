@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import React, { useRef } from "react";
 import Link from "next/link";
 
-const page = () => {
+const SigninPage = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -68,7 +68,7 @@ const page = () => {
                 });
               }}
               type="submit"
-              className=" bg-orange-800 text-white px-4 py-2 rounded-md hover:bg-orange-900 focus:outline-none focus:ring focus:border-blue-400"
+              className=" bg-orange-800 text-white px-4 py-2 rounded-md hover:bg-orange-900 focus:outline-none focus:ring focus:border-orange-950"
             >
               Sign In
             </button>
@@ -90,6 +90,7 @@ const page = () => {
           {/* Sign In with Google Button */}
           <div className="flex justify-center">
             <button
+              type="button"
               className="bg-gray-200 font-semibold flex px-4 py-2 rounded-md hover:bg-gray-300 focus:outline-none focus:ring focus:border-gray-400"
               onClick={() =>
                 signIn("google", { callbackUrl: "http://localhost:3000/" })
@@ -105,4 +106,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SigninPage;

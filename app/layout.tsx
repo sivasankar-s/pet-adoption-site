@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import NavBar from "./components/NavBar";
 import Hero from "./components/Hero";
 import AuthProvider from "./auth/Provider";
+import Footer from "./components/Footer";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,9 +24,11 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthProvider>
           <NavBar />
-          <div className="flex min-h-screen flex-col items-center pt-10 px-10">
+          <div className="flex min-h-screen flex-col items-center mb-28 pt-10 px-10">
             {children}
           </div>
+          <Footer />
+          <Toaster position="top-center" />
         </AuthProvider>
       </body>
     </html>

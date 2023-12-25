@@ -17,11 +17,12 @@ const page = async () => {
       gender: true,
       dateOfBirth: true,
       breed: true,
+      id: true,
     },
   });
 
   return (
-    <main>
+    <div>
       <Hero />
       <div className="flex justify-center space-x-32 mt-16 mb-20">
         <Link
@@ -32,7 +33,7 @@ const page = async () => {
         </Link>
         <Link
           href="/adopted"
-          className="text-[#6B240C] font-bold flex hover:scale-110 transition-all ease-in-out"
+          className=" font-bold flex hover:scale-110 transition-all ease-in-out"
         >
           <FaPaw className="mr-2" />
           Adopted Pets
@@ -40,19 +41,20 @@ const page = async () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-7 ">
         {adoptedPetDetails.map((pet, i) => (
-          <GridCard
-            type={pet.type}
-            image={pet.imageUrl}
-            breed={pet.breed}
-            dob={pet.dateOfBirth.toLocaleDateString("en-GB")}
-            gender={pet.gender}
-            name={pet.name}
-            key={i}
-          />
+          <Link href={"/pet/" + pet.id} key={i}>
+            <GridCard
+              type={pet.type}
+              image={pet.imageUrl}
+              breed={pet.breed}
+              dob={pet.dateOfBirth}
+              gender={pet.gender}
+              name={pet.name}
+            />
+          </Link>
         ))}
         {/* {allPetDetails} */}
       </div>
-    </main>
+    </div>
   );
 };
 

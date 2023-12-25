@@ -2,8 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["mongodb"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -12,15 +11,15 @@ datasource db {
 }
 
 model petDetails {
-  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  id              String  @id @default(auto()) @map("_id") @db.ObjectId
   name            String
-  dateOfBirth     DateTime
+  dateOfBirth     String
   type            String
   gender          String
   breed           String
   owner           String
   imageUrl        String
-  availableStatus Boolean  @default(true)
+  availableStatus Boolean @default(true)
   description     String?
 }
 

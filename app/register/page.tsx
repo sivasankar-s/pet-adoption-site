@@ -6,7 +6,7 @@ import { z } from "zod";
 import { POST } from "../api/register/route";
 // import bcrypt from "bcrypt";
 
-const page = () => {
+const RegisterPage = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data: FieldValues) => {
@@ -20,7 +20,7 @@ const page = () => {
   return (
     <div className="flex items-center justify-center">
       <form
-        className="bg-white p-8 rounded shadow-md w-96"
+        className="bg-[#F5CCA0] p-8 rounded shadow-md w-96"
         onSubmit={handleSubmit(onSubmit)}
       >
         <h2 className="text-2xl font-semibold mb-4">Register</h2>
@@ -38,7 +38,7 @@ const page = () => {
             id="name"
             {...register("name", { required: "Name is required" })}
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-400"
-            placeholder="John Doe"
+            placeholder="Name"
           />
         </div>
 
@@ -61,7 +61,7 @@ const page = () => {
               },
             })}
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-400"
-            placeholder="john.doe@example.com"
+            placeholder="Email"
           />
         </div>
 
@@ -84,7 +84,7 @@ const page = () => {
               },
             })}
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-400"
-            placeholder="********"
+            placeholder="password"
           />
         </div>
 
@@ -101,14 +101,15 @@ const page = () => {
             id="phoneNumber"
             {...register("phoneNumber")}
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-400"
-            placeholder="1234567890"
+            placeholder="Phone"
           />
         </div>
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-400 w-full"
+          className=" bg-orange-800 text-white px-4 py-2 rounded-md hover:bg-orange-900 focus:outline-none focus:ring focus:border-orange-950"
+          // className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-400 w-full"
         >
           Register
         </button>
@@ -117,4 +118,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default RegisterPage;

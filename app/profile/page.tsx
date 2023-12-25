@@ -1,12 +1,8 @@
 import React from "react";
-import AddPhone from "../components/AddPhone";
+import AddPhone from "./addphone/page";
 
 const page = () => {
-  return (
-    <div>
-      <AddPhone />
-    </div>
-  );
+  return <div>Profile</div>;
 };
 
 export default page;
