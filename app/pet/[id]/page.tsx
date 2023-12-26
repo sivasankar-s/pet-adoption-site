@@ -12,9 +12,13 @@ interface Props {
 }
 
 const page = async ({ params: { id } }: Props) => {
-  const petDetail = await prisma.petDetails.findUnique({ where: { id: id } });
+  const petDetail = await prisma.petDetails.findUnique({ where: { slug: id } });
 
   const session = await getServerSession(AuthOptions);
+
+  // console.log(
+  //   slugify(petDetail?.name + Math.floor(Math.random() * 10000).toString())
+  // );
 
   return (
     <div className="w-full rounded-3xl bg-[#F5CCA0]">
@@ -89,7 +93,7 @@ const page = async ({ params: { id } }: Props) => {
             <p className="flex justify-center mt-4 text-lg text-orange-900 ">
               <Link
                 href="/api/auth/signin"
-                className="text-xl hover:text-orange-950 transition-colors ease-in-out mr-2"
+                className="text-lg hover:text-orange-950 transition-colors ease-in-out mr-2 underline"
               >
                 Log in
               </Link>

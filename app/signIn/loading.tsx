@@ -3,7 +3,7 @@ import React from "react";
 const SignInLoading = () => {
   return (
     <div className="flex items-center justify-center">
-      <form className="bg-[#F5CCA0] animate-pulse h-[65vh] p-8 rounded shadow-md w-96 ">
+      <form className="bg-[#F5CCA0] skeleton h-[65vh] p-8 rounded shadow-md w-96 ">
         <h2 className="text-2xl rounded-lg bg-[#d1ae88] font-semibold mb-4 flex justify-center"></h2>
 
         {/* Email Input */}

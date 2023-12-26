@@ -8,9 +8,11 @@ interface CloundinaryResult {
 }
 
 const ImageUpload = () => {
+  let display = "Upload";
   const setVal = (url: string) => {
     let img = document.getElementById("url");
     img?.setAttribute("value", url);
+    display = "Uploaded";
   };
 
   return (
@@ -58,7 +60,7 @@ const ImageUpload = () => {
               className="p-4 mt-5 mr-10 bg-[#994D1C] text-white font-bold rounded-lg hover:bg-orange-950 transition-colors ease-in-out"
               onClick={() => open()}
             >
-              Upload
+              {display}
               {/* {imgUrl !== "" ? "Uploaded" : "Upload an Image"} */}
             </button>
           );

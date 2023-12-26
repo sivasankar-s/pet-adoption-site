@@ -3,7 +3,7 @@ import React from "react";
 const RegisterLoading = () => {
   return (
     <div className="flex items-center justify-center">
-      <form className="bg-[#F5CCA0] animate-pulse p-8 rounded shadow-md w-96">
+      <form className="bg-[#F5CCA0] p-8 skeleton rounded shadow-md w-96">
         <h2 className="text-2xl font-semibold mb-4">Register</h2>
 
         {/* Name Input */}

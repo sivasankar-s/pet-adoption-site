@@ -44,17 +44,25 @@ const GridCard = ({ type, image, name, dob, gender, breed }: Props) => {
         <div className="flex justify-around p-1 mt-5 mb-3">
           <h4>
             <div className="flex">
-              <FaBirthdayCake /> <p className="ml-2">{dob}</p>
+              {/* <FaBirthdayCake />  */}
+              <p className="font-bold">Age: </p>
+              <p className="ml-2">{dob}</p>
             </div>
           </h4>
           <h4>
             {gender === "male" ? (
               <div className="flex">
-                <IoMdMale /> <p className="ml-2">Male</p>
+                <div className="flex items-center">
+                  <IoMdMale />
+                </div>
+                <p className="ml-2">Male</p>
               </div>
             ) : (
               <div className="flex">
-                <IoMdFemale /> <p className="ml-2">Female</p>
+                <div className="flex items-center">
+                  <IoMdFemale />
+                </div>
+                <p className="ml-2">Female</p>
               </div>
             )}
           </h4>

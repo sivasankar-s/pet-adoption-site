@@ -7,12 +7,17 @@ import { Router } from "next/router";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import toast from "react-hot-toast";
+import slugify from 'slugify'
 
 export const onSubmitNewPet = async (body: FormData) => {
     const session = await getServerSession(AuthOptions);
+
+    const slug = slugify(body.get('name')?.toString() + Math.floor(Math.random() * 10000).toString())
+
     const newPet = await prisma.petDetails.create({
         data: {
             name: body.get('name')?.toString()!,
+            slug: slug,
             breed: body.get('breed')?.toString()!,
             dateOfBirth: body.get('dob')?.toString()!,
             gender: body.get('gender')?.toString()!,

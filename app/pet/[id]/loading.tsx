@@ -13,7 +13,7 @@ const loading = () => {
           </div>
         </div>
         <div className="ml-7 ">
-          <h2 className="p-4 pt-7 text-5xl font-bold "></h2>
+          <h2 className="p-4 pt-7 text-5xl font-bold ">About</h2>
 
           <h2 className="p-4 text-xl font-bold text-orange-950"></h2>
 

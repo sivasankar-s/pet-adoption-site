@@ -13,6 +13,7 @@ datasource db {
 model petDetails {
   id              String  @id @default(auto()) @map("_id") @db.ObjectId
   name            String
+  slug            String  @unique
   dateOfBirth     String
   type            String
   gender          String
