@@ -6,6 +6,7 @@ import prisma from "@/app/prsima";
 import Hero from "../components/Hero";
 import ComboBox from "../components/ComboBox";
 import Dropdown from "../components/Dropdown";
+import { Metadata } from "next";
 
 interface Props {
   searchParams: { type: "dog" | "cat" };
@@ -124,3 +125,7 @@ const page = async ({ searchParams: { type } }: Props) => {
 };
 
 export default page;
+
+export const metadata: Metadata = {
+  title: "Adopted Pets",
+};

@@ -6,6 +6,7 @@ import { z } from "zod";
 import { POST } from "../api/register/route";
 import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
+import { Metadata } from "next";
 // import bcrypt from "bcrypt";
 
 const RegisterPage = () => {
@@ -145,3 +146,8 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
+
+export const metadata: Metadata = {
+  title: "Register to Adore A Pet",
+  description: "Register new user in this page",
+};

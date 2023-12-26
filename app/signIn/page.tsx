@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import React, { useRef } from "react";
 import Link from "next/link";
+import { Metadata } from "next";
 
 const SigninPage = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -107,3 +108,8 @@ const SigninPage = () => {
 };
 
 export default SigninPage;
+
+export const metadata: Metadata = {
+  title: "Sign in to Adore A Pet",
+  description: "Sign in, in this page",
+};

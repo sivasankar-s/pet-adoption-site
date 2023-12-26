@@ -6,6 +6,8 @@ import Link from "next/link";
 import { AuthOptions } from "@/app/api/auth/[...nextauth]/AuthOptions";
 import OwnerDetailsCard from "@/app/components/OwnerDetailsCard";
 import ToggleAdopt from "@/app/components/ToogleAdopt";
+import { Metadata } from "next";
+import { unknown } from "zod";
 
 interface Props {
   params: { id: string };
@@ -13,6 +15,7 @@ interface Props {
 
 const page = async ({ params: { id } }: Props) => {
   const petDetail = await prisma.petDetails.findUnique({ where: { slug: id } });
+  // pet = petDetail;
 
   const session = await getServerSession(AuthOptions);
 
@@ -107,3 +110,17 @@ const page = async ({ params: { id } }: Props) => {
 };
 
 export default page;
+
+export async function generateMetadata({
+  params: { id },
+}: Props): Promise<Metadata> {
+  const petDetail = await prisma.petDetails.findUnique({ where: { slug: id } });
+  return {
+    title: `About ${petDetail?.name}`,
+    description: `Adopt ${petDetail?.gender} ${petDetail?.type} ${petDetail?.name}`,
+    openGraph: {
+      title: `${petDetail?.name}`,
+      description: `About ${petDetail?.gender} ${petDetail?.type} ${petDetail?.name} Now!`,
+    },
+  };
+}

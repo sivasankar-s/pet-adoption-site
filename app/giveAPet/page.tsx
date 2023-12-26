@@ -10,6 +10,7 @@ import { CldUploadWidget } from "next-cloudinary";
 import { onSubmitNewPet } from "../actions";
 import ImageUpload from "../components/imageUpload";
 import SubmitButton from "../components/SubmitButton";
+import { Metadata } from "next";
 
 const page = () => {
   //   const nameRef = useRef<HTMLInputElement>(null);
@@ -189,3 +190,8 @@ const page = () => {
 };
 
 export default page;
+
+export const metadata: Metadata = {
+  title: "Give A Pet",
+  description: "Submit your pet details in this page",
+};
