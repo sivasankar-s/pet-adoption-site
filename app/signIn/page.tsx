@@ -109,7 +109,7 @@ const SigninPage = () => {
 
 export default SigninPage;
 
-export const metadata: Metadata = {
-  title: "Sign in to Adore A Pet",
-  description: "Sign in, in this page",
-};
+// export const metadata: Metadata = {
+//   title: "Sign in to Adore A Pet",
+//   description: "Sign in, in this page",
+// };

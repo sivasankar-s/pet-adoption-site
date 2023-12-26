@@ -147,7 +147,7 @@ const RegisterPage = () => {
 
 export default RegisterPage;
 
-export const metadata: Metadata = {
-  title: "Register to Adore A Pet",
-  description: "Register new user in this page",
-};
+// export const metadata: Metadata = {
+//   title: "Register to Adore A Pet",
+//   description: "Register new user in this page",
+// };
