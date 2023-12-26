@@ -117,10 +117,10 @@ export async function generateMetadata({
   const petDetail = await prisma.petDetails.findUnique({ where: { slug: id } });
   return {
     title: `About ${petDetail?.name}`,
-    description: `Adopt ${petDetail?.gender} ${petDetail?.type} ${petDetail?.name}`,
+    description: `${petDetail?.description}. Adopt ${petDetail?.gender} ${petDetail?.type} ${petDetail?.name}`,
     openGraph: {
-      title: `${petDetail?.name}`,
-      description: `About ${petDetail?.gender} ${petDetail?.type} ${petDetail?.name} Now!`,
+      title: `About ${petDetail?.name}`,
+      description: `Adopt ${petDetail?.gender} ${petDetail?.type} ${petDetail?.name} Now!`,
     },
   };
 }
