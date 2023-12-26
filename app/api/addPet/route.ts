@@ -29,7 +29,7 @@ export async function POST(req : NextRequest) {
             imageUrl: body.url,
             owner: body.email,
             description: body.description,
-            
+            slug: body.slug,
         }
       })
 
