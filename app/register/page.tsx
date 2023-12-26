@@ -7,10 +7,13 @@ import { POST } from "../api/register/route";
 import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { Metadata } from "next";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 // import bcrypt from "bcrypt";
 
 const RegisterPage = () => {
   const { register, handleSubmit } = useForm();
+  const router = useRouter();
 
   const onSubmit = async (data: FieldValues) => {
     console.log(data);
@@ -19,6 +22,9 @@ const RegisterPage = () => {
       body: JSON.stringify(data),
     });
     console.log(res);
+
+    toast.success("Registered Successfully");
+    router.push("/api/auth/signin");
   };
   return (
     <div className="flex items-center justify-center">
