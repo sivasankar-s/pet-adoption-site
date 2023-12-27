@@ -3,6 +3,7 @@ import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "@/app/prsima";
+import toast from "react-hot-toast";
 
 // import bcrypt from 'bcrypt'
 export const AuthOptions: NextAuthOptions = {
@@ -22,7 +23,8 @@ export const AuthOptions: NextAuthOptions = {
         if (!user) return null;
         // const passwordMatch = await bcrypt.compare(credentials.password, user.hashedPassword!)
         const passwordMatch = user.hashedPassword === credentials.password;
-        console.log(user);
+        // console.log(user);
+        
         return passwordMatch ? user : null;
       }
     }),

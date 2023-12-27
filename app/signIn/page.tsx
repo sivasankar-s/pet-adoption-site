@@ -5,6 +5,8 @@ import { FcGoogle } from "react-icons/fc";
 import React, { useRef } from "react";
 import Link from "next/link";
 import { Metadata } from "next";
+// import { error } from "console";
+import toast from "react-hot-toast";
 
 const SigninPage = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -66,6 +68,11 @@ const SigninPage = () => {
                   email: emailRef.current?.value,
                   password: passwordRef.current?.value,
                   callbackUrl: "http://localhost:3000/",
+                }).then((ok) => {
+                  if (!ok) {
+                    // console.log(error);
+                    toast.error("Wrong Credentials");
+                  }
                 });
               }}
               type="submit"

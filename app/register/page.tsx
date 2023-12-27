@@ -11,20 +11,42 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 // import bcrypt from "bcrypt";
 
+type respError = {
+  code?: string;
+  minimum?: number;
+  type?: string;
+  exact?: boolean | string;
+  inclusive?: boolean | string;
+  path: string[];
+  message: string;
+};
+
 const RegisterPage = () => {
   const { register, handleSubmit } = useForm();
   const router = useRouter();
 
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
+    // console.log(data);
     const res = await fetch("/api/register", {
       method: "POST",
       body: JSON.stringify(data),
     });
-    console.log(res);
+    // then((d) => console.log(d));
+    // let errors: respError[];
+    if (res.status === 400) {
+      res.json().then((data) => {
+        data?.map((e: respError) => toast.error(e.message));
+      });
+    }
+    if (res.status === 401) {
+      res.json().then((data) => toast.error(data.error));
+    }
+    // errors
 
-    toast.success("Registered Successfully");
-    router.push("/api/auth/signin");
+    if (res.status === 201) {
+      toast.success("Registered Successfully");
+      router.push("/api/auth/signin");
+    }
   };
   return (
     <div className="flex items-center justify-center">
@@ -87,13 +109,13 @@ const RegisterPage = () => {
           <input
             type="password"
             id="password"
-            {...register("password", {
-              required: "Password is required",
-              minLength: {
-                value: 6,
-                message: "Password must be at least 6 characters long",
-              },
-            })}
+            {...register("password")}
+            // required: "Password is required",
+            // minLength: {
+            //   value: 6,
+            //   message: "Password must be at least 6 characters long",
+            // },
+            // })}
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-400"
             placeholder="password"
           />
@@ -108,10 +130,10 @@ const RegisterPage = () => {
             Phone Number:
           </label>
           <input
-            type="tel"
+            type="number"
             id="phoneNumber"
             {...register("phoneNumber")}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-400"
+            className="appearance-auto w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-400"
             placeholder="Phone"
           />
         </div>
