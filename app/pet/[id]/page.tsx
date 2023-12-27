@@ -7,7 +7,7 @@ import { AuthOptions } from "@/app/api/auth/[...nextauth]/AuthOptions";
 import OwnerDetailsCard from "@/app/components/OwnerDetailsCard";
 import ToggleAdopt from "@/app/components/ToogleAdopt";
 import { Metadata } from "next";
-import { unknown } from "zod";
+// import { WhatsappShareButton, WhatsappIcon } from "next-share";
 
 interface Props {
   params: { id: string };
@@ -90,6 +90,13 @@ const page = async ({ params: { id } }: Props) => {
               <h3 className="p-3">{petDetail?.type}</h3>
             </div>
           </div>
+          {/* <WhatsappShareButton
+            url={`/pet/${id}`}
+            title={`Adopt ${petDetail?.gender} ${petDetail?.type} '${petDetail?.name}' Now!`}
+            separator=":: "
+          >
+            <WhatsappIcon size={32} round />
+          </WhatsappShareButton> */}
           {session?.user ? (
             <OwnerDetailsCard email={petDetail?.owner!} />
           ) : (
@@ -120,7 +127,7 @@ export async function generateMetadata({
     description: `${petDetail?.description}. Adopt ${petDetail?.gender} ${petDetail?.type} ${petDetail?.name}`,
     openGraph: {
       title: `About ${petDetail?.name}`,
-      description: `Adopt ${petDetail?.gender} ${petDetail?.type} ${petDetail?.name} Now!`,
+      description: `Adopt ${petDetail?.gender} ${petDetail?.type} '${petDetail?.name}' Now!`,
     },
   };
 }
