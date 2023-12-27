@@ -22,8 +22,7 @@ export const metadata: Metadata = {
     images: "/opengraph-image.png",
   },
   verification: {
-    google:
-      "google-site-verification=T9lCMdcbypjP2WpQkt3Wsbb5NBL3hpLLzRX_nDGEB8k",
+    google: "T9lCMdcbypjP2WpQkt3Wsbb5NBL3hpLLzRX_nDGEB8k",
   },
 };
 
