@@ -2,12 +2,14 @@
 
 import { CldUploadWidget } from "next-cloudinary";
 import React from "react";
+import { FieldValues, useForm } from "react-hook-form";
 
 interface CloundinaryResult {
   url: string;
 }
 
 const ImageUpload = () => {
+  const { register, handleSubmit } = useForm();
   let display = "Upload";
   const setVal = (url: string) => {
     let img = document.getElementById("url");
@@ -17,7 +19,7 @@ const ImageUpload = () => {
 
   return (
     <div>
-      <input type="hidden" name="url" id="url" />
+      <input type="hidden" {...register("imgurl")} name="imgurl" id="url" />
       <CldUploadWidget
         // {...register("url")}
         uploadPreset="uzjonn68"

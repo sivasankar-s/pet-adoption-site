@@ -8,28 +8,78 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import toast from "react-hot-toast";
 import slugify from 'slugify'
+import { z } from "zod";
+import { FieldValues } from "react-hook-form";
 
-export const onSubmitNewPet = async (body: FormData) => {
+const addPetSchema = z
+    .object({
+        name: z.string().min(3, {message: 'Name must be atleast 3 letters'}),
+        breed: z.string().min(1, {message: "Please specify the breed"}),
+        // password: z.string().min(6, {message: 'Password must be atleast 6 characters'}),
+        // phoneNumber: z.string().min(10, {message: 'Phone number must be atleast 10 digits'}),
+        dob: z.string().refine((value) => {
+            const regex = /^(\d+)\s*(months?|years?|weeks?|days?|month?|year?|day?|week?|Months?|Years?|Weeks?|Days?|Month?|Year?|Day?|Week?)$/;
+            return regex.test(value);
+          }, {
+            message: "Please mention age in 'years','months' 'weeks', or 'days'.",
+          }),
+        imgurl: z.string().min(1, {message: "Please upload an Image"}),
+
+      });
+
+export const onSubmitNewPet = async (body: FieldValues) => {
     const session = await getServerSession(AuthOptions);
+    console.log(body);
+    const slug = slugify(body.name + Math.floor(Math.random() * 10000).toString())
+    body =  {...body,owner: session?.user?.email!, slug: slug}
+    console.log(body);
+    
+    const dat = {
+        // name: body.get('name')?.toString()!, 
+        // slug: slug, 
+        // breed: body.get('breed')?.toString()!,
+        // dateOfBirth: body.get('dob')?.toString()!,
+        // gender: body.get('gender')?.toString()!,
+        // type: body.get('animalType')?.toString()!,
+        // imageUrl: body.get("url")?.toString()!,
+        // owner: session?.user?.email!,
+        // description: body.get("description")?.toString()!,
+    }
 
-    const slug = slugify(body.get('name')?.toString() + Math.floor(Math.random() * 10000).toString())
+    const validation = addPetSchema.safeParse(body);
+
+    if(!validation.success){
+        // 'use client';
+        const errors = validation.error.errors as z.ZodIssue[];
+
+        console.log(errors)
+        return errors;
+
+        // errors.map(err => toast.error(err.message));
+        
+    }
 
     const newPet = await prisma.petDetails.create({
         data: {
-            name: body.get('name')?.toString()!,
+            name: body.name,
             slug: slug,
-            breed: body.get('breed')?.toString()!,
-            dateOfBirth: body.get('dob')?.toString()!,
-            gender: body.get('gender')?.toString()!,
-            type: body.get('animalType')?.toString()!,
-            imageUrl: body.get("url")?.toString()!,
+            breed: body.breed,
+            dateOfBirth: body.dob,
+            gender: body.gender,
+            type: body.animalType,
+            imageUrl: body.imgurl,
             owner: session?.user?.email!,
-            description: body.get("description")?.toString()!,
+            description: body.description,
         }
     })
     // revalidatePath('/');
-    redirect('/');
+    if(newPet){
+        redirect('/');
+        return null;
+        
+    }
 }
+    
 
 export const checkPhoneAdded = async () => {
     const session = await getServerSession(AuthOptions);
