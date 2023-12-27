@@ -19,6 +19,7 @@ const page = async () => {
       gender: true,
       dateOfBirth: true,
       breed: true,
+      slug: true,
     },
   });
 
@@ -27,7 +28,7 @@ const page = async () => {
       <h1 className="text-3xl font-semibold mb-10">My Pets</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-10 pb-10 ">
         {allPetDetails.map((pet, i) => (
-          <Link href={"/pet/" + pet.id} key={i}>
+          <Link href={"/pet/" + pet.slug} key={i}>
             <GridCard
               type={pet.type}
               image={pet.imageUrl}

@@ -148,7 +148,7 @@ const page = () => {
           </div>
           <div className="p-4 flex-col m-4">
             <div className="mb-4 text-3xl font-semibold">
-              <label className="p-3 text-orange-900">Date Of Birth</label>
+              <label className="p-3 text-orange-900">Age</label>
             </div>
             <div>
               <input
