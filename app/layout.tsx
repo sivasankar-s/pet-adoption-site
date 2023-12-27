@@ -21,6 +21,10 @@ export const metadata: Metadata = {
     description: "A place to adopt and give your pets.",
     images: "/opengraph-image.png",
   },
+  verification: {
+    google:
+      "google-site-verification=T9lCMdcbypjP2WpQkt3Wsbb5NBL3hpLLzRX_nDGEB8k",
+  },
 };
 
 export default function RootLayout({
